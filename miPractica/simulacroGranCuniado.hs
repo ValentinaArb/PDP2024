@@ -13,16 +13,12 @@ data Participante = UnParticipante{
 }deriving (Show)
 
 type Prueba = Participante -> (Bool, Float)
-
-requiere :: Float-> Float -> Bool
-requiere n nivel = (==) n nivel
-
 baileDeTiktok :: Prueba
-baileDeTiktok participante = (requiere 20 (nivelPersonalidad participante), nivelPersonalidad participante + 2* nivelAtractivo participante)
+baileDeTiktok participante = ((==) 20 (nivelPersonalidad participante), nivelPersonalidad participante + 2* nivelAtractivo participante)
 botonRojo :: Prueba
-botonRojo participante = (requiere 10 (nivelPersonalidad participante) && requiere 20 (nivelInteligencia participante), 100)
+botonRojo participante = ((==) 10 (nivelPersonalidad participante) && (==) 20 (nivelInteligencia participante), 100)
 cuentasRapidas :: Prueba
-cuentasRapidas participante = (requiere 40 (nivelInteligencia participante), nivelInteligencia participante + nivelPersonalidad participante - nivelAtractivo participante)
+cuentasRapidas participante = ((==) 40 (nivelInteligencia participante), nivelInteligencia participante + nivelPersonalidad participante - nivelAtractivo participante)
 
 superaPrueba :: Prueba -> Participante -> Bool
 superaPrueba prueba participante = fst (prueba participante) 
@@ -31,7 +27,7 @@ superanPrueba :: Prueba -> [Participante] -> [Participante]
 superanPrueba prueba = filter (\x -> True == superaPrueba prueba x)
 
 soloIndiceDeExitoParticipantes :: Prueba -> [Participante] -> [Float]
-soloIndiceDeExitoParticipantes prueba = map (\x-> snd(prueba x))
+soloIndiceDeExitoParticipantes prueba = map (snd.prueba)
 
 promedioIndiceExito :: Prueba -> [Participante] -> Float
 promedioIndiceExito prueba = (/2).sum.soloIndiceDeExitoParticipantes prueba

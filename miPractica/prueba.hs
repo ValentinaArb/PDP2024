@@ -77,22 +77,17 @@ para que se vaya y un fantasma categorÃ­a 1 que requiere que la persona tenga mÃ
 experienciaDespuesDeEnfretarCriaturas :: [Criatura]->Persona->Int
 experienciaDespuesDeEnfretarCriaturas unasCriaturas  = experiencia . enfrentarCriaturas unasCriaturas
 
-
 enfrentarCriaturas :: [Criatura]->Persona->Persona
 enfrentarCriaturas unasCriaturas unaPersona= foldl enfrentamiento unaPersona unasCriaturas
 
-
-
 grupoDeCriaturas :: Persona->[Criatura]
 grupoDeCriaturas unaPersona= [siempreDeAtras,gnomos 10, fantasmas 3 tieneMenosDe13YUnDisfrazDeOveja , fantasmas 1 tieneMasDe10DeExperiencia ]
-
 
 tieneMenosDe13YUnDisfrazDeOveja :: Persona -> Bool
 tieneMenosDe13YUnDisfrazDeOveja unaPersona = ((<13) . edad $ unaPersona) && esPortadorDelItem "disfraz de oveja" unaPersona
 
 tieneMasDe10DeExperiencia :: Persona->Bool
 tieneMasDe10DeExperiencia = (>10). experiencia 
-
 
 {-
 zipWithIf :: (a -> b -> b) -> (b -> Bool) -> [a] -> [b] -> [b] 
