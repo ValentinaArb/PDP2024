@@ -41,9 +41,10 @@ zara :: Perrito
 zara = UnPerrito "Dalmata" ["pelota", "mantita"] 900 80
 ema :: Perrito
 ema = UnPerrito "Golden" ["kong", "pelota","mantita"] 900 80
-{- pi :: Perrito
-pi = UnPerrito "Labrador" (map (\x->["soguitas"] ++ x) ["1".."10"]) 314 159 -}
+pii :: Perrito
+pii = UnPerrito "Labrador" (map (\x-> "soguita" ++ show x) [1..]) 314 159
 
+guarderiaPdePerritos :: Guarderia
 guarderiaPdePerritos = UnaGuarderia "guarderiaPdePerritos" [(jugar,30),(ladrar 18,20),(regalar "pelota",0),(diaDeSpa,120),(diaDeCampo,720)] 
 
 puedeEstar :: Guarderia -> Perrito -> Bool
