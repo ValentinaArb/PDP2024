@@ -86,8 +86,8 @@ promedioPaginas biblioteca = totalPaginasBiblioteca biblioteca `div` cantidadDeL
 titulosBiblioteca :: [Libro] -> [String]
 titulosBiblioteca = map (\x->titulo(x))
 
-lecturaObligatoria :: Libro -> Bool
-lecturaObligatoria libro = (autor(libro)=="Stephen King" || titulo libro == "Fundacion" || elem libro sagaEragon)
+{- lecturaObligatoria :: Libro -> Bool
+lecturaObligatoria libro = (autor(libro)=="Stephen King" || titulo libro == "Fundacion" || elem libro sagaEragon) -}
 
 {- nombreDeLaBibliotecaConVocales :: [Libro]->[String]
 nombreDeLaBibliotecaConVocales biblioteca = (++) (titulosBiblioteca biblioteca) -}
