@@ -34,24 +34,81 @@ mayorSegun f a b
   | f a > f b = a
   | otherwise = b
 
-putter jugador = UnTiro{
-  velocidad = 10,
-  precision = (*2).precisionJugador $ jugador,
-  altura = 0
-}
+type Palo = Habilidad -> Tiro
 
-madera jugador = UnTiro{
-  velocidad = 100,
-  altura = 5,
-  precision = (`div` 2).precisionJugador $ jugador
-}
+putter :: Palo
+putter habilidad = UnTiro 10 (2* precisionJugador habilidad) 0
+madera :: Palo
+madera habilidad = UnTiro 100 (precisionJugador habilidad `div` 2) 5
+hierros :: Int -> Palo
+hierros n habilidad = UnTiro (n* fuerzaJugador habilidad) (precisionJugador habilidad `div` n) (max (n-3) 0)
 
-hierros n jugador = UnTiro{
-  velocidad= (*n).fuerzaJugador $ jugador,
-  precision = (`div` n).precisionJugador $ jugador,
-  altura = max (n-3) 0
-}
-type Palo = [String]
 palos :: [Palo]
-hierro = foldl (++) "" [1..10]
-palos = [putter, madera] + hierro
+palos = [putter,madera] ++ map hierros [1..10]
+
+golpe :: Palo -> Jugador -> Tiro
+golpe palo = palo.habilidad
+
+data Obstaculo = UnObstaculo{
+  puedeSuperar :: TiroExitoso,
+  efectoObstaculo :: ModificarTiro
+}deriving (Show)
+
+type ModificarTiro = Tiro -> Tiro
+type TiroExitoso = Tiro -> Bool
+
+tiroDetenido :: Tiro
+tiroDetenido = UnTiro 0 0 0 
+
+condicionSuperarTunel :: TiroExitoso
+condicionSuperarTunel tiro = precision tiro > 90 && altura tiro == 0
+modificarTunel :: ModificarTiro
+modificarTunel tiro = tiro {velocidad = velocidad tiro *2, precision = 100, altura = 0}
+
+condicionSuperarLaguna :: TiroExitoso
+condicionSuperarLaguna tiro = velocidad tiro > 80 && between 1 5 (altura tiro)
+modificarLaguna :: Int-> ModificarTiro
+modificarLaguna largo tiro = tiro {altura = altura tiro `div` largo}
+
+condicionSuperarHoyo :: TiroExitoso
+condicionSuperarHoyo tiro = between 5 20 (velocidad tiro) && precision tiro > 95 && altura tiro == 0
+modificarHoyo :: ModificarTiro
+modificarHoyo _ = tiroDetenido
+
+tunel :: Obstaculo
+tunel = UnObstaculo condicionSuperarTunel modificarTunel
+laguna :: Int -> Obstaculo
+laguna largo = UnObstaculo condicionSuperarLaguna (modificarLaguna largo)
+hoyo :: Obstaculo
+hoyo = UnObstaculo condicionSuperarHoyo modificarHoyo
+
+noPuedeSuperarlo :: Tiro
+noPuedeSuperarlo = tiroDetenido  
+
+intentaSuperarObstaculo :: Obstaculo -> Jugador -> Palo -> Tiro
+intentaSuperarObstaculo obstaculo jugador palo
+  |puedeSuperar obstaculo (golpe palo jugador) = efectoObstaculo obstaculo $ (golpe palo jugador)
+  |otherwise = noPuedeSuperarlo
+
+palosUtiles :: Obstaculo -> Jugador -> [Palo]
+palosUtiles obstaculo persona = filter (leSirve obstaculo persona) palos
+
+leSirve :: Obstaculo -> Jugador -> Palo ->  Bool 
+leSirve obstaculo persona palo = puedeSuperar obstaculo (golpe palo persona)
+
+cantidadObstaculosSuperados :: [Obstaculo] -> Tiro -> Int
+cantidadObstaculosSuperados obstaculos tiro = length (takeWhile (\obstaculo -> puedeSuperar obstaculo tiro) obstaculos)
+
+paloMasUtil :: [Obstaculo] -> Jugador -> Palo
+paloMasUtil obstaculos persona = maximoSegun (\palo -> cantidadObstaculosSuperados obstaculos (golpe palo persona)) palos
+
+type PuntosJugadores = (Jugador,Puntos)
+
+ganador :: [PuntosJugadores] -> PuntosJugadores
+ganador jugadoresPuntos = maximoSegun snd jugadoresPuntos
+
+perdedores :: [PuntosJugadores] -> [Jugador]
+perdedores jugadoresPuntos = map fst (filter (ganador jugadoresPuntos /=) jugadoresPuntos)
+
+padresQuePierden :: [PuntosJugadores] -> [String]
+padresQuePierden jugadoresPuntos = map padre (perdedores jugadoresPuntos)
