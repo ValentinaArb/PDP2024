@@ -33,8 +33,10 @@ estaCerca auto1 auto2 = sonAutosDiferentes auto1 auto2 && distanciaEntreDosAutos
 
 autosContrarios :: Carrera -> Auto -> [Auto]
 autosContrarios carrera auto = filter (\autoContrario -> color autoContrario  /= color auto) (autos carrera) 
+
 noTieneAutosCerca :: [Auto] -> Auto -> Bool
-noTieneAutosCerca autosContrarios auto = all (==False) (map (estaCerca auto) autosContrarios)  
+noTieneAutosCerca autosContrarios auto = all (==False) (map (estaCerca auto==True) autosContrarios)  
+
 vaGanando :: [Auto] -> Auto -> Bool
 vaGanando autosContrarios auto = maximum (map distancia autosContrarios) < distancia auto
 
@@ -47,4 +49,23 @@ velocidadesMayoresAlAuto :: Auto -> Carrera -> [Int]
 velocidadesMayoresAlAuto auto carrera = filter (> distancia auto) (velocidadesOrdenadas carrera)
 
 puestoEnCarrera :: Carrera -> Auto -> Int
-puestoEnCarrera carrera auto = 1 + length (velocidadesMayoresAlAuto auto carrera)
+puestoEnCarrera carrera auto = (+1).length.velocidadesMayoresAlAuto auto $ carrera
+
+corre :: Auto -> Int -> Auto
+corre auto tiempo = auto{distancia= distancia auto + tiempo * velocidad auto}
+
+modificador :: Int -> Int
+modificador velocidadActual = velocidadActual * 10 {- corregir -}
+
+alterarVelocidad :: Auto -> Auto
+alterarVelocidad auto = auto {velocidad = modificador.velocidad $ auto}
+
+bajarVelocidad :: Auto -> Int -> Auto
+bajarVelocidad auto cantidad = auto {velocidad = max 0 (velocidad auto - cantidad)} 
+
+afectarALosQueCumplen :: (a -> Bool) -> (a -> a) -> [a] -> [a]
+afectarALosQueCumplen criterio efecto lista
+  = (map efecto . filter criterio) lista ++ filter (not.criterio) lista
+
+
+terremoto carrera auto = 
