@@ -20,7 +20,7 @@ ositamovil = UnAuto "rosa" 1 400
 emimovil :: Auto
 emimovil = UnAuto "amarillo" 500 500 
 
-carrera = UnaCarrera [felipemovil,ositamovil,emimovil]
+carrera = UnaCarrera [emimovil, felipemovil,ositamovil]
  
 distanciaEntreDosAutos :: Auto -> Auto -> Int
 distanciaEntreDosAutos auto1 auto2 = abs (distancia auto1 - distancia auto2)
@@ -41,4 +41,10 @@ vaGanando autosContrarios auto = maximum (map distancia autosContrarios) < dista
 vaTranquilo :: Carrera -> Auto -> Bool
 vaTranquilo carrera auto = noTieneAutosCerca (autosContrarios carrera auto) auto && vaGanando (autosContrarios carrera auto) auto 
 
-{- Conocer en qué puesto está un auto en una carrera, que es 1 + la cantidad de autos de la carrera que le van ganando. -}
+velocidadesOrdenadas :: Carrera -> [Int]
+velocidadesOrdenadas carrera = sort (map distancia (autos carrera))
+velocidadesMayoresAlAuto :: Auto -> Carrera -> [Int]
+velocidadesMayoresAlAuto auto carrera = filter (> distancia auto) (velocidadesOrdenadas carrera)
+
+puestoEnCarrera :: Carrera -> Auto -> Int
+puestoEnCarrera carrera auto = 1 + length (velocidadesMayoresAlAuto auto carrera)
