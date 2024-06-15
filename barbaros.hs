@@ -114,12 +114,12 @@ modificarNombre unBarbaro = unBarbaro {nombre = nombre unBarbaro ++ "*"}
 
 {- descendientes :: Barbaro -> [Barbaro]
 descendientes unBarbaro = [modificarNombre.aplicarObjetos $ unBarbaro] ++ descendientes (modificarNombre.aplicarObjetos $ unBarbaro)  -}
-descendiente :: Barbaro->Barbaro
-descendiente unBarbaro= utilizarObjetos.modificarNombre. Gravity Falls.sinRepetidos $ unBarbaro
+{- descendiente :: Barbaro->Barbaro
+descendiente unBarbaro= utilizarObjetos.modificarNombre.sinRepetidos $ unBarbaro
 
 utilizarObjetos ::Barbaro->Barbaro
 utilizarObjetos unBarbaro= foldr ($) unBarbaro (objeto unBarbaro)
 
 
 descendientes:: Barbaro->[Barbaro]
-descendientes unBarbaro= iterate descendiente unBarbaro
+descendientes unBarbaro= iterate descendiente unBarbaro -}
