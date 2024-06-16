@@ -14,6 +14,8 @@ data Accesorio = UnAccesorio{
     eficacia :: Float
 } deriving Show
 
+type Efecto = Float -> Juguete -> Juguete
+
 cantidadCaracteresNombre= fromIntegral . length . nombre
 cantidadAccesorios= fromIntegral . length . accesorios
 {- aplicacion parcial con "juguete" -}
@@ -22,41 +24,39 @@ cantidadAccesorios= fromIntegral . length . accesorios
 modificarFacha cantidad juguete = juguete {nivelFacha = nivelFacha juguete + cantidad}
 modificarNombre nuevoNombre juguete = juguete{nombre = nuevoNombre}
 
-lucirAmenazante :: Accesorio -> Juguete -> Juguete
-lucirAmenazante accesorio = modificarFacha (10 + eficacia accesorio)
+lucirAmenazante :: Efecto
+lucirAmenazante eficacia = modificarFacha (10 + eficacia)
 {- aplicacion parcial con "juguete" -}
-
-type Efecto = Juguete -> Juguete
 
 --1b
 vieneAndy :: Efecto
-vieneAndy juguete = juguete {estaVivo = False}
+vieneAndy _ juguete = juguete {estaVivo = False}
 
 --1c
-masSteel :: Accesorio -> Efecto
-masSteel accesorio juguete =  modificarNombre "Max Steel". modificarFacha ((* eficacia accesorio) . cantidadCaracteresNombre $ juguete) $ juguete
+masSteel :: Efecto
+masSteel eficacia juguete =  modificarNombre "Max Steel". modificarFacha ((* eficacia) . cantidadCaracteresNombre $ juguete) $ juguete
 {- Composicion usando point free -}
 
 --1d
-quemadura :: Float -> Accesorio -> Efecto
-quemadura gradoQuemadura accesorio = modificarFacha (gradoQuemadura * (eficacia accesorio + 2))
+quemadura :: Float -> Efecto
+quemadura gradoQuemadura eficacia = modificarFacha (gradoQuemadura * (eficacia + 2))
 {- aplicacion parcial con "juguete" -}
 
 -- 2a
 serpienteEnBota :: Accesorio
-serpienteEnBota = UnAccesorio (lucirAmenazante serpienteEnBota) 2
+serpienteEnBota = UnAccesorio lucirAmenazante 2
 -- 2b 
 radio :: Accesorio
 radio = UnAccesorio vieneAndy 3
 -- 2c
 revolver :: Accesorio
-revolver = UnAccesorio (masSteel revolver) 5 
+revolver = UnAccesorio masSteel 5 
 -- 2d
 escopeta :: Accesorio
-escopeta = UnAccesorio (masSteel escopeta) 20 
+escopeta = UnAccesorio masSteel 20 
 -- 2e
 lanzaLlamas :: Accesorio
-lanzaLlamas = UnAccesorio (quemadura 3 lanzaLlamas) 8.5
+lanzaLlamas = UnAccesorio (quemadura 3) 8.5
 
 --3 a
 woody :: Juguete
@@ -95,19 +95,19 @@ cantidadDislexicosYNoVivos :: [Juguete] -> Int
 cantidadDislexicosYNoVivos = cantidades (not . estaVivo) . filter esDislexico
 {- aplicacion parcial con "juguetes" -}
 
-aplicarEfectoAccesorios :: Juguete -> Juguete
-aplicarEfectoAccesorios juguete = foldl (flip($)) juguete (map efecto (accesorios juguete))
+{- aplicarEfectoAccesorios :: Juguete -> Juguete -}
+aplicarEfectoAccesorios juguete accesorio = foldl (flip($)) (\funcion -> funcion (eficacia accesorio) juguete) (map efecto (accesorios juguete))
 
 formulaAmorPorJuguete :: Juguete -> Float
 formulaAmorPorJuguete juguete = nivelFacha juguete + cantidadCaracteresNombre juguete * 5 - cantidadAccesorios juguete * 7
     
 amorAndyPorJuguete :: Juguete -> Float
 amorAndyPorJuguete juguete 
-    |estaVivo juguete = (2*) . formulaAmorPorJuguete . aplicarEfectoAccesorios  $ juguete
-    |otherwise = formulaAmorPorJuguete . aplicarEfectoAccesorios  $ juguete
+    |estaVivo juguete = (2*) . formulaAmorPorJuguete . aplicarEfectoAccesorios $ juguete
+    |otherwise = formulaAmorPorJuguete . aplicarEfectoAccesorios $ juguete
 
 pasaMontanias :: Accesorio
-pasaMontanias = UnAccesorio (lucirAmenazante pasaMontanias) 7
+pasaMontanias = UnAccesorio lucirAmenazante 7
 
 amorCajon :: [Juguete] -> Float
 amorCajon = sum . map amorAndyPorJuguete
