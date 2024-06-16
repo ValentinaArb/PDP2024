@@ -1,6 +1,5 @@
 import Text.Show.Functions
 import Data.List
-import Data.Data (ConIndex)
 
 type Condicion = Viaje -> Bool
 
@@ -26,7 +25,7 @@ cualquiera :: Condicion
 cualquiera _ = True
 
 {- uso composicion y aplicacion parcial con "viaje" en los 3 siguientes: -}
-masDe200 :: Condicion
+masDe200 :: Condicion 
 masDe200 = (> 200) . costo
 masDeNLetras :: Int -> Condicion
 masDeNLetras n = (>n) . length . nombreCliente . cliente
