@@ -54,12 +54,23 @@ concentracion :: Int -> Elemento
 concentracion nivelConcentracion = UnElemento "Magia" noHacerNada (defensaConcentracion nivelConcentracion)
 
 --3b 
-ataqueEsbirros :: Personaje -> Personaje
-ataqueEsbirros = modificarSalud (-1) 
-
 esbirrosMalvados :: Int -> [Elemento]
-esbirrosMalvados cantidad = take cantidad (cycle [UnElemento "Maldad" ataqueEsbirros id])
+esbirrosMalvados cantidad = take cantidad (cycle [UnElemento "Maldad" (modificarSalud (-1)) id])
 
 --3c
-katanaMagica = UnElemento "Magica"  id
+katanaMagica :: Elemento
+katanaMagica = UnElemento "Magia" id (modificarSalud (-1000))
+jack :: Personaje
 jack = UnPersonaje "Jack" 300 [concentracion 3, katanaMagica] 200
+
+--3d
+generarNuevoAku :: Personaje -> Personaje
+generarNuevoAku personaje = aku (anioPresente personaje) (salud personaje)
+portalAlFuturo :: Personaje -> Elemento
+portalAlFuturo personaje = UnElemento "Magia" (mandarAlAnio (anioPresente personaje + 2800)) generarNuevoAku
+aku :: Int -> Float -> Personaje
+aku anio cantidadSalud = UnPersonaje "aku" cantidadSalud (concentracion 4 : portalAlFuturo (aku anio cantidadSalud) : esbirrosMalvados (100*anio)) anio
+
+--4
+{- luchar :: Personaje -> Personaje -> (Personaje, Personaje)
+luchar personaje1 personaje2 =  -}
