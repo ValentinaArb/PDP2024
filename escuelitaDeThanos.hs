@@ -27,13 +27,6 @@ chasquearElUniverso universo
     |guanteleteCompleto (guantelete universo) && material (guantelete universo) == "uru" = universo {personajes = take (length (personajes universo) `div` 2) (personajes universo)}
     |otherwise = universo
 
-{- universoprueba :: Universo
-universoprueba = UnUniverso personajesPrueba guanteletePrueba
-personajesPrueba :: [Personaje]
-personajesPrueba = [ironman, UnPersonaje 100 2 ["hola"] "drStrange" "a" ,UnPersonaje 100 2 ["hola","hola"] "groot" "a" , UnPersonaje 100 2 ["hola"] "wolverine" "a",UnPersonaje 100 2 ["hola","chay"] "viudaNegra" "a"]
-guanteletePrueba :: Guantelete
-guanteletePrueba = UnGuantelete "uru" ["amarillo", "rojo","rosa","azul","blanco","naranja"] -}
-
 ironman :: Personaje
 ironman = UnPersonaje 100 100 ["hola","chau","OGL"] "ironMan" "a" 
 
@@ -85,17 +78,6 @@ utilizar :: Personaje -> [Gema] -> Personaje
 utilizar = foldl (flip ($)) {-  Indicar cómo se produce el “efecto de lado” sobre la víctima. no entendío -}
 
 --6
-{-  obtiene la gema del infinito que produce la pérdida más grande de energía sobre la víctima.  -}
-{- maximoSegun f = foldl1 (mayorSegun f)
-mayorSegun f a b
-  | f a > f b = a
-  | otherwise = b -}
-{- 
-gemaMasPoderosa :: Guantelete -> Personaje -> Gema
-gemaMasPoderosa guantelete personaje = maximoSegun (\gema -> energia (gema personaje)) (gemasQuePosee guantelete) -}
-    
-{- gemaMasPoderosa guantelete personaje = map (\gema -> gema personaje) (gemasQuePosee guantelete) -}
-
 gemaMasPoderosa :: Personaje -> Guantelete -> Gema
 gemaMasPoderosa personaje guantelte = gemaMasPoderosaDe personaje $ gemasQuePosee guantelte
 
@@ -117,6 +99,4 @@ usoLasTresPrimerasGemas guantelete = (utilizar . take 3. gemasQuePosee) guantele
 Justifique si se puede ejecutar, relacionándolo con conceptos vistos en la cursada:
 gemaMasPoderosa punisher guanteleteDeLocos
 usoLasTresPrimerasGemas guanteleteDeLocos punisher 
-
-
 -}
