@@ -1,4 +1,4 @@
-data Color = Gris | Violeta | Celeste | Rosa deriving(Show)
+{- data Color = Gris | Violeta | Celeste | Rosa deriving(Show)
 data Categoria = Comunes | Fuerte | HighEnd | Pichi deriving(Show)
 
 data Poder = UnPoder{
@@ -17,7 +17,7 @@ data Nomu = UnNomu {
     cantidadFuerza :: Int,
     categoria :: Categoria,
     poder :: Poder
-}deriving(Show)
+}deriving Show
 
 puedeVer :: Nomu -> Bool
 puedeVer nomu = cantidadDeOjos nomu > 0
@@ -28,3 +28,4 @@ categoriaNomu categoria
     |cantidadFuerza>3000 && cantidadFuerza<10000 = Fuertes
     |cantidadFuerza>10000 = HighEnd
     |otherwise = Pichi
+ -}

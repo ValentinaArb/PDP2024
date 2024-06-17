@@ -19,10 +19,10 @@ type Requerimiento = Participante -> Bool
 type IndiceDeExito = Participante -> Int
 
 javierTulei,minimoKirchner,horacioBerreta,myriamBregwoman :: Participante
-javierTulei = UnParticipante "Javier Tulei" 52 30 70 35 menosInteligente --1
-minimoKirchner = UnParticipante "Minimo Kirchner" 46 0 40 50 masAtractivo --0
-horacioBerreta = UnParticipante "Horacio Berreta" 57 10 60 50 masAtractivo --1
-myriamBregwoman = UnParticipante "Myriam Bregwoman" 51 40 40 60 masViejo --2
+javierTulei = UnParticipante "Javier Tulei" 52 30 70 35 menosInteligente
+minimoKirchner = UnParticipante "Minimo Kirchner" 46 0 40 50 masAtractivo
+horacioBerreta = UnParticipante "Horacio Berreta" 57 10 60 50 masAtractivo
+myriamBregwoman = UnParticipante "Myriam Bregwoman" 51 40 40 60 masViejo
 
 requerimientoBaileDeTiktok,requerimientoBotonRojo,requerimientoCuentasRapidas :: Requerimiento
 indiceDeExitoBaileDeTiktok,indiceDeExitoBotonRojo,indiceDeExitoCuentasRapidas :: IndiceDeExito
