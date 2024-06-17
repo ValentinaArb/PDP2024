@@ -92,5 +92,23 @@ palosUtiles :: Jugador -> Obstaculo -> [Palo]
 palosUtiles persona obstaculo = filter (\palo -> requisito obstaculo (golpe palo persona)) palos
 
 {- Saber, a partir de un conjunto de obstáculos y un tiro, cuántos obstáculos consecutivos se pueden superar. -}
-cuantoSupera :: [Obstaculo] -> Tiro -> [Bool]
-cuantoSupera (x:xs) tiro = map (\obstaculo -> requisito obstaculo tiro) (x:xs)
+cuantoSupera :: [Obstaculo] -> Tiro -> Int
+cuantoSupera [] tiro = 0
+cuantoSupera (x:xs) tiro
+    |requisito x tiro = 1 + cuantoSupera xs (consecuencia x tiro)
+    |otherwise = 0
+
+{- maximoSegun f = foldl1 (mayorSegun f)
+mayorSegun f a b
+  | f a > f b = a
+  | otherwise = b -}
+
+paloMasUtil :: Jugador -> [Obstaculo] -> Palo
+paloMasUtil jugador obstaculos = maximoSegun (\palo -> cuantoSupera obstaculos (golpe palo jugador)) palos
+
+ninioQueGano :: [(Jugador,Puntos)] -> (Jugador,Puntos)
+ninioQueGano = maximoSegun snd
+niniosPerdedores :: [(Jugador, Puntos)] -> [(Jugador, Puntos)]
+niniosPerdedores lista = filter (/=ninioQueGano lista) lista
+padresPerdedores :: [(Jugador, Puntos)] -> [String]
+padresPerdedores lista = map (padre . fst) (niniosPerdedores lista)
