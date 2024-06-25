@@ -28,7 +28,6 @@ type Puntos = Int
 
 -- Funciones útiles
 between n m x = elem x [n .. m]
-
 maximoSegun f = foldl1 (mayorSegun f)
 mayorSegun f a b
   | f a > f b = a
@@ -86,22 +85,15 @@ intentaSuperarObstaculo :: Tiro -> Obstaculo ->  Consecuencia
 intentaSuperarObstaculo tiro obstaculo  
     |requisito obstaculo tiro = consecuencia obstaculo
     |otherwise = tiroDetenido
-{- intentaSuperarObstaculo tunel (golpe putter bart) (golpe putter bart) -}
 
 palosUtiles :: Jugador -> Obstaculo -> [Palo]
 palosUtiles persona obstaculo = filter (\palo -> requisito obstaculo (golpe palo persona)) palos
 
-{- Saber, a partir de un conjunto de obstáculos y un tiro, cuántos obstáculos consecutivos se pueden superar. -}
 cuantoSupera :: [Obstaculo] -> Tiro -> Int
 cuantoSupera [] tiro = 0
 cuantoSupera (x:xs) tiro
     |requisito x tiro = 1 + cuantoSupera xs (consecuencia x tiro)
     |otherwise = 0
-
-{- maximoSegun f = foldl1 (mayorSegun f)
-mayorSegun f a b
-  | f a > f b = a
-  | otherwise = b -}
 
 paloMasUtil :: Jugador -> [Obstaculo] -> Palo
 paloMasUtil jugador obstaculos = maximoSegun (\palo -> cuantoSupera obstaculos (golpe palo jugador)) palos
