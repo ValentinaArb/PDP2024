@@ -11,6 +11,7 @@ habilidad(bakunin, conducirAutos).
 habilidad(ravachol, tiroAlBlanco).
 habilidad(rosaDubovsky, contruirPuentes).
 habilidad(rosaDubovsky, mirarPeppaPig).
+habilidad(judithButler, judo).
 habilidad(elisaBachofen, armarBombas).
 habilidad(emmaGoldman, Habil):- habilidad(judithButler, Habil).
 habilidad(emmaGoldman, Habil):- habilidad(elisaBachofen, Habil).
