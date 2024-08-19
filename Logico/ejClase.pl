@@ -29,6 +29,14 @@ cantidadMedallas(Persona,Medallas) :- practica(Persona, natacion(_,_,Medallas)).
 cantidadMedallas(Persona,Medallas) :- practica(Persona, futbol(Medallas,_,_)).
 cantidadMedallas(Persona,Medallas) :- practica(Persona, rugby(_,Medallas)).
 
+medallasObtenidas(Deportista, Medallas) :- 
+    practica(Deportista, Deporte),
+    medallasDeporte(Deporte, Medallas).
+
+medallasDeporte(natacion(_, _, Medallas), Medallas).
+medallasDeporte(futbol(Medallas, _, _), Medallas).
+medallasDeporte(rugby(_, Medallas), Medallas).
+
 % ¿Quién tiene más medallas que el resto? /* HACER */
     
 % ¿Quién no tiene aún medallas?
