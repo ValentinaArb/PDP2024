@@ -25,20 +25,3 @@ foreverAlone(Persona,Dia,Hora) :-
     quienAtiende(Persona,Dia,Hora),
     quienAtiende(OtraPersona,Dia,Hora),
     not(Persona \= OtraPersona).
-
-/* punto 4 */
-/* posibleAtencion(Dia,Lista) :- 
-    persona(Persona),
-    findall(Persona, atiende(Persona,Dia,_),Lista).
- */
-
-venta(dodain,fecha(lunes,10,agosto),[golosinas(1200),cigarrillos([jockey]),golosinas(50)]).
-venta(dodain,fecha(miercoles,12,agosto),[bebida(alcoholica,8),bebida(no-alcoholica,1),golosinas(10)]).
-venta(martu,fecha(miercoles,12,agosto),[golosinas(1000),cigarrillos([chesterfield,colorado,parisiennes])]).
-venta(lucas,fecha(martes,11,agosto),[golosinas(600)]).
-venta(lucas,fecha(martes,18,agosto),[bebida(no-alcoholica,2),cigarrillos([derby])]).
-
-ventaImportante(golosinas(Precio)):- Precio>100.
-ventaImportante(cigarrillos(Marcas)):- length(Marcas)>2.
-ventaImportante(bebida(alcoholica,_)).
-ventaImportante(bebida(_,Cantidad)):- Cantidad>8.
