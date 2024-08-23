@@ -87,4 +87,4 @@ si todos ellos se caracterizan por ser amistosos y cada uno podría estar en la 
 
 todosSonAmistosos(ListaDeMagos):-
     member(Mago,ListaDeMagos),
-    forall(caracteristicasMago(Mago,Caracteristicas), member(amistoso,Caracteristicas)).    
+    forall(caracteristicasMago(Mago,Caracteristicas), member(amistoso,Caracteristicas)).
