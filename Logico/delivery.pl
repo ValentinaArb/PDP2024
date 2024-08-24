@@ -98,8 +98,5 @@ cantidadIngrediente(Plato,Ingrediente,CantidadPlatos,CantidadNecesaria):-
     
 
 cantidadTotal(Ingrediente,ListaCantidades,Total) :-
-    findall(CantidadNecesaria,member(cantidad(Plato,CantidadPlatos),ListaCantidades),cantidadIngrediente(Plato,Ingrediente,CantidadPlatos,CantidadNecesaria),ListaCantidad),
+    findall(CantidadNecesaria,(member(cantidad(Plato,CantidadPlatos),ListaCantidades),cantidadIngrediente(Plato,Ingrediente,CantidadPlatos,CantidadNecesaria)),ListaCantidad),
     sum_list(ListaCantidad, Total).
-
-/*  cantidadTotal(pan, [cantidad(platoPrincipal(milanesa),5),cantidad(entrada(ensMixta),4), cantidad(postre(budinDePan),3)],Total).
- */
