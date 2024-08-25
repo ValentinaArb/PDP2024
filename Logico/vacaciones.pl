@@ -33,7 +33,6 @@ vacacionesCopadas(Persona):-
     forall(member(Destino,ListaDestinos),lugarTieneAtraccionCopada(Destino)).
 
 /* punto 3 */
-/* Cuando dos personas distintas no coinciden en ningún lugar como destino decimos que no se cruzaron. Por ejemplo, Dodain no se cruzó con Nico ni con Vale (sí con Alf en San Martín de los Andes). Vale no se cruzó con Dodain ni con Nico (sí con Alf en El Bolsón). El predicado debe ser completamente inversible. */
 seCruzaron(Persona1,Persona2):- 
     destino(Persona1,ListaDestinos1),
     destino(Persona2,ListaDestinos2),
@@ -57,7 +56,6 @@ costoVida(elCalafate,240).
 costoVida(elBolson,145).
 costoVida(marDelPlata,140).
 
-/* punto 4*/
 destinoGasolero(Destino):- costoVida(Destino,Costo),Costo<160.
 vacacionesGasoleras(Persona):-
     persona(Persona),
@@ -69,4 +67,3 @@ itinerariosPosibles(Persona,CombinacionesPosibles):-
     persona(Persona),
     destino(Persona,ListaDestinos),
     permutation(ListaDestinos,CombinacionesPosibles).
-    
