@@ -9,7 +9,7 @@ persona(Persona):- destino(Persona,_).
 
 my_append([], Cs, Cs).
 my_append([A|As],Bs,[A|Cs]):-
-          my_append(As, Bs, Cs).
+    my_append(As, Bs, Cs).
 
 /* punto 2 */
 atracciones(esquel,[parqueNacional(losAlerces),excursion(trochita),excursion(trevelin)]).
@@ -57,11 +57,16 @@ costoVida(elCalafate,240).
 costoVida(elBolson,145).
 costoVida(marDelPlata,140).
 
-/* Queremos saber si unas vacaciones fueron gasoleras para una persona. Esto ocurre si todos los destinos son gasoleros, es decir, tienen un costo de vida menor a 160. Alf, Nico y Martu hicieron vacaciones gasoleras.
-El predicado debe ser inversible.
-*/
+/* punto 4*/
 destinoGasolero(Destino):- costoVida(Destino,Costo),Costo<160.
-
 vacacionesGasoleras(Persona):-
+    persona(Persona),
     destino(Persona,ListaDestino),
-    forall()
+    forall(member(Destino,ListaDestino),destinoGasolero(Destino)).
+
+/* punto 5 */
+itinerariosPosibles(Persona,CombinacionesPosibles):-
+    persona(Persona),
+    destino(Persona,ListaDestinos),
+    permutation(ListaDestinos,CombinacionesPosibles).
+    
