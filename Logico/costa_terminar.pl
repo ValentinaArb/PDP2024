@@ -3,7 +3,6 @@ comida(panchitoConPapas,1500).
 comida(lomitoCompleto,2500).
 comida(caramelo,0).
 
-
 atraccionTranquila(autitosChocadores,[chicos,adultos]).
 atraccionTranquila(casaEmbrujada,[chicos,adultos]).
 atraccionTranquila(laberinto,[chicos,adultos]).
