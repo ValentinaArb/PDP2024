@@ -1,0 +1,40 @@
+{"level":"info","message":"⌛ Building environment","timeElapsed":653,"timestamp":"2024-10-19T20:55:53.713Z"}
+{"level":"info","message":"onRequest - WORKSPACE_URI:file:///c%3A/Users/Alejandro/Desktop/PDP2024","timestamp":"2024-10-19T20:55:53.750Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":250,"timestamp":"2024-10-19T20:55:54.006Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":329,"timestamp":"2024-10-19T20:55:55.583Z"}
+{"level":"info","message":"⌛ Validating Objetos/example.wlk","timeElapsed":583,"timestamp":"2024-10-19T20:55:56.168Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":210,"timestamp":"2024-10-19T20:55:56.379Z"}
+{"level":"info","message":"⌛ Validating Objetos/testExample.wtest","timeElapsed":729,"timestamp":"2024-10-19T20:55:57.428Z"}
+{"level":"info","message":"⌛ Validating Objetos/example.wlk","timeElapsed":608,"timestamp":"2024-10-19T20:55:58.047Z"}
+{"level":"info","message":"⌛ Validating Objetos/testExample.wtest","timeElapsed":489,"timestamp":"2024-10-19T20:55:58.540Z"}
+{"level":"info","message":"onRequest - STRONG_FILES_CHANGED:c:\\Users\\Alejandro\\Desktop\\PDP2024\\Objetos\\tp_houaw","timestamp":"2024-10-19T20:55:58.541Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":587,"timestamp":"2024-10-19T20:55:59.132Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":259,"timestamp":"2024-10-19T20:55:59.394Z"}
+{"level":"info","message":"Removing diagnostics from \\Users\\Alejandro\\Desktop\\PDP2024\\Objetos\\tp_houaw","timestamp":"2024-10-19T20:55:59.514Z"}
+{"level":"info","message":"onRequest - WORKSPACE_URI:file:///c%3A/Users/Alejandro/Desktop/PDP2024","timestamp":"2024-10-19T20:55:59.551Z"}
+{"level":"info","message":"onRequest - STRONG_FILES_CHANGED:c:\\Users\\Alejandro\\Desktop\\PDP2024\\Objetos\\tp_houSE","timestamp":"2024-10-19T20:56:00.410Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":180,"timestamp":"2024-10-19T20:56:00.591Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":111,"timestamp":"2024-10-19T20:56:00.702Z"}
+{"level":"info","message":"Removing diagnostics from \\Users\\Alejandro\\Desktop\\PDP2024\\Objetos\\tp_houSE","timestamp":"2024-10-19T20:56:00.803Z"}
+{"level":"info","message":"onRequest - WORKSPACE_URI:file:///c%3A/Users/Alejandro/Desktop/PDP2024","timestamp":"2024-10-19T20:56:00.810Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":173,"timestamp":"2024-10-19T20:56:18.770Z"}
+{"level":"info","message":"⌛ Validating Objetos/tp_house/house.wlk","timeElapsed":1549,"timestamp":"2024-10-19T20:56:20.329Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":281,"timestamp":"2024-10-19T20:56:40.239Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":204,"timestamp":"2024-10-19T20:56:40.444Z"}
+{"level":"info","message":"onRequest - STRONG_FILES_CHANGED:c:\\Users\\Alejandro\\Desktop\\PDP2024\\Objetos\\.gitignore,c:\\Users\\Alejandro\\Desktop\\PDP2024\\Objetos\\example.wlk,c:\\Users\\Alejandro\\Desktop\\PDP2024\\Objetos\\package.json,c:\\Users\\Alejandro\\Desktop\\PDP2024\\Objetos\\README.md,c:\\Users\\Alejandro\\Desktop\\PDP2024\\Objetos\\testExample.wtest","timestamp":"2024-10-19T20:56:40.446Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":468,"timestamp":"2024-10-19T20:56:40.915Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":152,"timestamp":"2024-10-19T20:56:41.069Z"}
+{"level":"info","message":"⌛ Validating Objetos/ETC/testExample.wtest","timeElapsed":525,"timestamp":"2024-10-19T20:56:41.596Z"}
+{"level":"info","message":"Removing diagnostics from \\Users\\Alejandro\\Desktop\\PDP2024\\Objetos\\testExample.wtest","timestamp":"2024-10-19T20:56:41.597Z"}
+{"level":"info","message":"⌛ Validating Objetos/ETC/example.wlk","timeElapsed":224,"timestamp":"2024-10-19T20:56:41.827Z"}
+{"level":"info","message":"onRequest - WORKSPACE_URI:file:///c%3A/Users/Alejandro/Desktop/PDP2024","timestamp":"2024-10-19T20:56:41.827Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":320,"timestamp":"2024-10-19T20:56:51.805Z"}
+{"level":"info","message":"⌛ Validating Objetos/ETC/example.wlk","timeElapsed":577,"timestamp":"2024-10-19T20:56:52.404Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":244,"timestamp":"2024-10-19T20:58:38.220Z"}
+{"level":"info","message":"⌛ Validating Objetos/tp_house/house.wlk","timeElapsed":321,"timestamp":"2024-10-19T20:58:38.643Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":133,"timestamp":"2024-10-19T20:58:40.832Z"}
+{"level":"info","message":"⌛ Validating Objetos/tp_house/house.wlk","timeElapsed":202,"timestamp":"2024-10-19T20:58:41.036Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":206,"timestamp":"2024-10-19T21:08:38.474Z"}
+{"level":"info","message":"⌛ Validating Objetos/tp_house/house.wlk","timeElapsed":503,"timestamp":"2024-10-19T21:08:38.984Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":625,"timestamp":"2024-10-19T21:15:57.778Z"}
+{"level":"info","message":"⌛ Validating Objetos/tp_house/house.wlk","timeElapsed":524,"timestamp":"2024-10-19T21:15:58.305Z"}
